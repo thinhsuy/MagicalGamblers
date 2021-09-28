@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dancing Script">
+    <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="jarallax.css">
+    <title>Gamblers or Magicians</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+    *{
+        margin: 0;
+        padding:0;
+        box-sizing: border-box;
+        font-family:'Dancing Script';
+        scroll-behavior: smooth;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: fit-content;
+        background: #161623;
+        flex-direction: column;
+    }
+    body::before{
+        content: '';
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(#f00, #f0f);
+        clip-path: circle(30% at right 70%);
+    }
+    body::after{
+        content: '';
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(#2196f3, #e91e63);
+        clip-path: circle(20% at 10% 10%);
+    }
+    .title{
+        font-size: 3rem;
+        color: white;
+        width: 100%;
+        margin: 0 8rem 0 8rem;
+        text-align: center;
+    }
+    .container{
+        position: relative;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        flex-wrap: wrap;
+        z-index: 1;
+        height: fit-content;
+    }
+    .container::before{
+        content: '';
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(#2196f3, #e91e63);
+        clip-path: circle(20% at 10% 90%);
+    }
+    .card{
+        position: relative;
+        width: 280px;
+        height: 400px;
+        margin: 30px;
+        box-shadow: 20px 20px 50px black;
+        border-radius: 15px;
+        background: rgba(255,255,255,0.1);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-top: 1px solid rgba(255,255,255,0.5);
+        border-left: 1px solid rgba(255,255,255,0.5);
+        backdrop-filter: blur(5px);
+    }
+    .content{
+        padding: 20px;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* transform: translateY(100px);
+        opacity: 0; */
+        transition: 0.5s;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+    .card:hover .content{
+        opacity: 1;
+        transform: translateY(0);
+    }
+    h3{
+        font-size: 1.8rem;
+        color: white;
+        z-index:1;
+        margin: 10px 0;
+        cursor: pointer;
+    }
+    p{
+        font-size: 1rem;
+        color: white;
+        font-weight: 300;
+    }
+    .visual{
+        font-family: 'Poppins';
+        position: relative;
+        display: inline-block;
+        padding: 8px 20px;
+        margin-top: 15px;
+        background: white;
+        color: black;
+        border-radius: 20px;
+        text-decoration: none;
+        font-weight: 500;
+        box-shadow: 0 5px 15px rgb(34, 34, 34);
+    }
+    .shape{
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+        border-radius: 30px;
+    }
+    img{
+        width: 100%;
+        height: 100%;
+    }
+    .tool{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
+    .icon{
+        width: 3.5rem;
+        height: 3.5rem;
+        cursor: pointer;
+        margin: 0 25px 0 25px;
+    }
+    .header{
+        position: relative;
+        z-index: 1000;
+        width: 100%;
+        display: flex;
+        justify-content:space-around;
+        align-items: center;
+    }
+    .overbox{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+        height: 150px;
+        -webkit-box-reflect: below 1px linear-gradient(transparent,transparent,transparent, transparent, gray);
+    }
+    .box{
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        filter: grayscale(1);
+        animation: animateBg 0.5s linear infinite;
+        transition: all 1s;
+        animation-play-state: paused;
+    }
+    #pink{
+        background: linear-gradient(45deg, #e91e63 25%, gray 25%,
+        gray 50%, #e91e63 50%, #e91e63 75%, gray 75%, gray 100%);
+        background-size: 40px 40px;
+    }
+    #blue{
+        background: linear-gradient(45deg, rgb(93, 166, 240) 25%, gray 25%,
+        gray 50%, rgb(93, 166, 240) 50%, rgb(93, 166, 240) 75%, gray 75%, gray 100%);
+        background-size: 40px 40px;
+    }
+    .content:hover .box{
+        filter: grayscale(0);
+        animation-play-state: running;
+    }
+    .ava{
+        position: relative;
+        height: 9.5rem;
+        width: 9.5rem;
+        bottom: 0;
+        transition: all 0.5s;
+        transform: scale(1);
+    }
+    .content:hover .ava{
+        transform: scale(1.2);
+        bottom: 17px;
+    }
+    @keyframes animateBg{
+        0% {background-position: 0;}
+        100%  {background-position: 40px;}
+    }
+    .menu{
+        position: fixed;
+        left: 10px;
+    }
+    .sight{
+        position: fixed;
+        right: 10px;
+    }
+</style>
+<body>
+    <div class="header">
+        <lord-icon
+            class="menu"
+            src="https://cdn.lordicon.com/bwhjesak.json"
+            trigger="morph"
+            colors="primary:#ffffff,secondary:#ffffff"
+            style="width:80px;height:80px;cursor:pointer;">
+        </lord-icon>
+        <h1 class="title">A2 Gamblers or Magicians?</h1>
+        <lord-icon
+            class="sight"
+            src="https://cdn.lordicon.com/tyounuzx.json"
+            trigger="morph"
+            colors="primary:#ffffff,secondary:#08a88a"
+            style="width:80px;height:80px;cursor:pointer;">
+        </lord-icon>
+    </div>
+    <div class="container" id="bigbox">
+        <div class="card jarallax">
+            <div class="content">
+                <div class="overbox">
+                    <div class="box" id="pink">
+                        <img class="ava" src="1.png">
+                    </div>
+                </div>
+                <h3>Trinh Hai Yen</h3>
+                <div class="tool">
+                    <a target="_blank" href="https://www.facebook.com/socaicap4201"><img src="10.png" class="icon"></a>
+                    <a target="_blank" href="https://www.instagram.com/haiyentrh"><img src="11.png" class="icon"></a>
+                </div>
+                <a class="visual" href="#target">Special Visual</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <div class="overbox">
+                    <div class="box" id="blue">
+                        <img style="width:11rem; height:11rem; bottom:25px" class="ava" src="2.png">
+                    </div>
+                </div>
+                <h3>Nguyen Quoc Hung</h3>
+                <div class="tool">
+                    <a target="_blank" href="https://www.facebook.com/qhung1007"><img src="10.png" class="icon"></a>
+                    <a target="_blank" href="https://www.instagram.com/ngh.qh"><img src="11.png" class="icon"></a>
+                </div>
+                <a class="visual" href="">Special Visual</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <div class="overbox">
+                    <div class="box" id="pink">
+                        <img class="ava" src="3.png">
+                    </div>
+                </div>
+                <h3>Hoang Hong Anh</h3>
+                <div class="tool">
+                    <a target="_blank" href="https://www.facebook.com/Kath.241201"><img src="10.png" class="icon"></a>
+                    <a target="_blank" href="https://www.instagram.com/honganhhg"><img src="11.png" class="icon"></a>
+                </div>
+                <a class="visual" href="">Special Visual</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <div class="overbox">
+                    <div class="box" id="blue">
+                        <img class="ava" src="4.png">
+                    </div>
+                </div>
+                <h3>Nguyen Tien Lan</h3>
+                <div class="tool">
+                    <a target="_blank" href="https://www.facebook.com/profile.php?id=100006831907436"><img src="10.png" class="icon"></a>
+                    <a target="_blank" href="https://www.instagram.com/ng.tienlan"><img src="11.png" class="icon"></a>
+                </div>
+                <a class="visual" href="">Special Visual</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <div class="overbox">
+                    <div class="box" id="pink">
+                        <img class="ava" src="5.png">
+                    </div>
+                </div>
+                <h3>Ha Thuc Quynh</h3>
+                <div class="tool">
+                    <a target="_blank" href="https://www.facebook.com/quynh.thuc.54"><img src="10.png" class="icon"></a>
+                    <a target="_blank" href="https://www.instagram.com/quynhcyncyn"><img src="11.png" class="icon"></a>
+                </div>
+                <a class="visual" href="">Special Visual</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <div class="overbox">
+                    <div class="box" id="blue">
+                        <img class="ava" src="6.png">
+                    </div>
+                </div>
+                <h3>Pham Manh Son</h3>
+                <div class="tool">
+                    <a target="_blank" href="https://www.facebook.com/profile.php?id=100004549803539"><img src="10.png" class="icon"></a>
+                    <a href="https://www.instagram.com/_nuis._" target="_blank"><img src="11.png" class="icon"></a>
+                </div>
+                <a class="visual" href="">Special Visual</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <div class="overbox">
+                    <div class="box" id="blue">
+                        <img class="ava" src="7.png">
+                    </div>
+                </div>
+                <h3>Nguyen Anh Quan</h3>
+                <div class="tool">
+                    <a target="_blank" href="https://www.facebook.com/profile.php?id=100035257190122"><img src="10.png" class="icon"></a>
+                    <a target="_blank" href=""><img src="11.png" class="icon"></a>
+                </div>
+                <a class="visual" href="">Special Visual</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <div class="overbox">
+                    <div class="box" id="pink">
+                        <img class="ava" src="12.png">
+                    </div>
+                </div>
+                <h3>Nguyen Tran Thanh Truc</h3>
+                <div class="tool">
+                    <a target="_blank" href="https://www.facebook.com/Thanhtrucnaley"><img src="10.png" class="icon"></a>
+                    <a target="_blank" href="https://www.instagram.com/thtrc.16"><img src="11.png" class="icon"></a>
+                </div>
+                <a class="visual" href="">Special Visual</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <div class="overbox">
+                    <div class="box" id="blue">
+                        <img class="ava" src="8.png">
+                    </div>
+                </div>
+                <h3>Nguyen An Lam</h3>
+                <div class="tool">
+                    <a target="_blank" href="https://www.facebook.com/auditore.deloki"><img src="10.png" class="icon"></a>
+                    <a target="_blank" href="https://www.instagram.com/anlam0202"><img src="11.png" class="icon"></a>
+                </div>
+                <a class="visual" href="">Special Visual</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <div class="overbox">
+                    <div class="box" id="blue">
+                        <img class="ava" src="9.png">
+                    </div>
+                </div>
+                <h3>Nguyen Duy Thinh</h3>
+                <div class="tool">
+                    <a target="_blank" href="fb://ng.duy.thinh.0201/"><img src="10.png" class="icon"></a>
+                    <a target="_blank" href="https://www.instagram.com/dythinhng"><img src="11.png" class="icon"></a>
+                </div>
+                <a class="visual" href="">Special Visual</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="vanilla-tilt.js"></script>
+    <script>
+        VanillaTilt.init(document.querySelectorAll(".card"), {
+		    max: 0,
+		    speed: 0,
+            glare: true,
+            "max-glare": 0.3
+	    });
+    </script>
+    <script>
+        const sight = document.querySelector('.sight');
+        const bigbox = document.querySelectorAll('.content');
+        const card = document.querySelectorAll('.card');
+        let see = true;
+        sight.onclick=()=>{
+            if (see==false){
+                for (var i=0; i< bigbox.length; i++){
+                    bigbox[i].style.opacity = "1";
+                    bigbox[i].style.transform = "translateY(0)";
+                } see=true;
+            } else {
+                for (var i=0; i< bigbox.length; i++){
+                    bigbox[i].style.opacity = "0";
+                    bigbox[i].style.transform = "translateY(100px)";
+                } see=false;
+            }
+        }
+    </script>
+    <script src="jarallax.js"></script>
+    <script src="jarallax-element.js"></script>
+    <script type="text/javascript">
+        jarallax(document.querySelectorAll('.jarallax'), {
+            speed: 0.5
+        });
+    </script>
+</body>
+</html>
